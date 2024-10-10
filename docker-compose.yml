@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:  
+
+  multiplayer-service:
+    build: .
+    container_name: multiplayer-service
+    ports:
+      - "50051:50051"
+    environment:
+      MONGO_URI: mongodb+srv://yash:yashMongodb@ecommerce-backend.eyunzek.mongodb.net/?retryWrites=true&w=majority&appName=Ecommerce-Backend
+    depends_on:
+      - mongo
+      - redis
+         
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: yash
+      MONGO_INITDB_ROOT_PASSWORD: yashMongodb
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379

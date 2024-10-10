@@ -1,0 +1,20 @@
+syntax = "proto3";
+package multiplayer;
+
+option go_package = "multiplayer-service/proto;multiplayer";
+
+
+message MultiplayerModeRequest {
+    string area_code = 1;
+}
+
+
+message MultiplayerModeResponse {
+    string area_code = 1;
+    string mode_name = 2;
+    uint32 players_count = 3;
+}
+
+service MultiplayerModeService {
+    rpc GetPopularMode(MultiplayerModeRequest) returns (MultiplayerModeResponse);
+}
